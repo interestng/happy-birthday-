@@ -521,12 +521,11 @@
         <div class="birthday-text">🎉 HAPPY BIRTHDAY 🎉</div>
         <div class="name">AMY</div>
         <div class="cake" id="cake">🎂</div>
-        <div class="message">Hope your special day is absolutely magical! ✨</div>
-        
+
+
         <div class="interactive-buttons">
-            <button class="fun-button party" onclick="partyMode()">🎉 Party Mode!</button>
-            <button class="fun-button music" onclick="danceMode()">💃 Dance Party!</button>
-            <button class="fun-button surprise" onclick="showSurprise()">🎁 Surprise!</button>
+            <button class="fun-button music" onclick="danceMode()">👵 Grandma Dance!</button>
+            <button class="fun-button surprise" onclick="showSurprise()">� PSurprise!</button>
         </div>
     </div>
 
@@ -699,57 +698,57 @@
         // Interactive functions
         let danceInterval;
         const surpriseMessages = [
-            "🎂 Amy, you're absolutely amazing! 🌟",
-            "🎉 Hope this year brings you endless joy! ✨",
-            "🌈 You deserve all the happiness in the world! 💖",
-            "🎁 Another year of being fabulous! 🦄",
-            "⭐ Shine bright like the star you are! 🌟",
-            "🎊 Here's to making incredible memories! 🥳"
+            "💀💀💀💀💀💀💀💀💀💀",
+            "💀 Unc skull emoji 💀",
+            "💀💀💀 UNC 💀💀�",
+            "💀 SKULL EMOJI 💀",
+            "💀💀💀💀💀💀💀💀💀💀💀💀",
+            "💀 UNC SKULL 💀"
         ];
 
-        function partyMode() {
-            // Super confetti explosion
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const x = Math.random() * window.innerWidth;
-                    const y = Math.random() * window.innerHeight * 0.8;
-                    createConfettiBurst(x, y);
-                }, i * 100);
-            }
-            
-            // Flash the background
-            document.body.style.animation = 'gradientShift 0.5s ease infinite';
-            setTimeout(() => {
-                document.body.style.animation = 'gradientShift 8s ease infinite';
-            }, 3000);
-        }
-
         function danceMode() {
-            document.body.classList.toggle('dance-mode');
-            
-            if (document.body.classList.contains('dance-mode')) {
-                // Start dance music effect (visual rhythm)
-                danceInterval = setInterval(() => {
-                    createConfettiBurst(
-                        Math.random() * window.innerWidth,
-                        Math.random() * window.innerHeight * 0.6
-                    );
-                }, 500);
-                
+            // Create dancing grandmas
+            for (let i = 0; i < 15; i++) {
                 setTimeout(() => {
-                    document.body.classList.remove('dance-mode');
-                    clearInterval(danceInterval);
-                }, 10000);
+                    const grandma = document.createElement('div');
+                    grandma.textContent = '👵';
+                    grandma.style.position = 'fixed';
+                    grandma.style.fontSize = '3rem';
+                    grandma.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+                    grandma.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+                    grandma.style.zIndex = '20';
+                    grandma.style.pointerEvents = 'none';
+                    
+                    // Dancing animation
+                    grandma.animate([
+                        { transform: 'rotate(0deg) scale(1)' },
+                        { transform: 'rotate(-15deg) scale(1.2)' },
+                        { transform: 'rotate(15deg) scale(0.8)' },
+                        { transform: 'rotate(-10deg) scale(1.1)' },
+                        { transform: 'rotate(0deg) scale(1)' }
+                    ], {
+                        duration: 800,
+                        iterations: 8,
+                        easing: 'ease-in-out'
+                    });
+                    
+                    document.body.appendChild(grandma);
+                    
+                    // Remove after dance
+                    setTimeout(() => {
+                        grandma.remove();
+                    }, 6400);
+                }, i * 200);
             }
         }
 
         function showSurprise() {
             const wishElement = document.getElementById('birthdayWish');
             const wishText = document.getElementById('wishText');
-            
+
             wishText.textContent = surpriseMessages[Math.floor(Math.random() * surpriseMessages.length)];
             wishElement.style.display = 'block';
-            
+
             // Extra confetti for surprise
             for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
@@ -767,14 +766,14 @@
 
         function popBalloon(balloon) {
             balloon.classList.add('balloon-pop');
-            
+
             // Create mini confetti burst at balloon location
             const rect = balloon.getBoundingClientRect();
-            createConfettiBurst(rect.left + rect.width/2, rect.top + rect.height/2);
-            
+            createConfettiBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
             setTimeout(() => {
                 balloon.style.visibility = 'hidden';
-                
+
                 // Respawn balloon after 3 seconds
                 setTimeout(() => {
                     balloon.classList.remove('balloon-pop');
@@ -794,23 +793,23 @@
                     confetti.style.width = '4px';
                     confetti.style.height = '4px';
                     confetti.style.borderRadius = '50%';
-                    
+
                     const cakeRect = document.getElementById('cake').getBoundingClientRect();
-                    confetti.style.left = (cakeRect.left + cakeRect.width/2) + 'px';
+                    confetti.style.left = (cakeRect.left + cakeRect.width / 2) + 'px';
                     confetti.style.top = (cakeRect.top + 20) + 'px';
-                    
+
                     const angle = (Math.PI * 2 * i) / 30;
                     const velocity = Math.random() * 80 + 40;
-                    const endX = cakeRect.left + cakeRect.width/2 + Math.cos(angle) * velocity;
+                    const endX = cakeRect.left + cakeRect.width / 2 + Math.cos(angle) * velocity;
                     const endY = cakeRect.top + 20 + Math.sin(angle) * velocity - 100;
-                    
+
                     confetti.animate([
                         { transform: 'translate(0px, 0px) scale(1)', opacity: 1 },
-                        { transform: `translate(${endX - (cakeRect.left + cakeRect.width/2)}px, ${endY - (cakeRect.top + 20)}px) scale(0)`, opacity: 0 }
+                        { transform: `translate(${endX - (cakeRect.left + cakeRect.width / 2)}px, ${endY - (cakeRect.top + 20)}px) scale(0)`, opacity: 0 }
                     ], { duration: 1500, easing: 'ease-out' });
-                    
+
                     document.getElementById('confetti-container').appendChild(confetti);
-                    
+
                     setTimeout(() => confetti.remove(), 1500);
                 }, i * 30);
             }
